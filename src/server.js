@@ -1,23 +1,18 @@
 import express from "express";
+import morgan from "morgan";
+import globalRouter from "./routers/globalRouter.js";
+import userRouter from "./routers/userRouter.js";
+import videoRouter from "./routers/videoRouter.js";
 
-const app = express();
 const PORT = 4000;
 
-const gossipMiddleware = (req, res, next) => {
-	console.log(`Someone is going to: ${req.url}`);
-	next();
-};
+const app = express();
+const logger = morgan("dev");
+app.use(logger);
 
-const handleHome = (req, res, next) => {
-	return res.send("I love middlewares");
-};
-
-const handleLogin = (req, res) => {
-	return res.send("login here");
-};
-
-app.get("/", gossipMiddleware, handleHome);
-app.get("/login", handleLogin);
+app.use("/", globalRouter);
+app.use("/videos", videoRouter);
+app.use("/users", userRouter);
 
 const handleListening = () => console.log(`listening on port ${PORT}`);
 
