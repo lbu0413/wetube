@@ -4,8 +4,33 @@ const fakeUser = {
 };
 
 export const trending = (req, res) => {
-	const videos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-	return res.render("home", { pageTitle: "Home", videos });
+	const videos = [
+		{
+			title: "First Video",
+			rating: 5,
+			comments: 2,
+			createdAt: "2 mins ago",
+			views: 59,
+			id: 1,
+		},
+		{
+			title: "Second Video",
+			rating: 5,
+			comments: 2,
+			createdAt: "2 mins ago",
+			views: 59,
+			id: 1,
+		},
+		{
+			title: "Third Video",
+			rating: 5,
+			comments: 2,
+			createdAt: "2 mins ago",
+			views: 59,
+			id: 1,
+		},
+	];
+	return res.render("home", { pageTitle: "Home", videos: videos });
 };
 export const view = (req, res) => res.render("view");
 export const edit = (req, res) => res.render("edit");
